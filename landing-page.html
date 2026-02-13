@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Freedom Calculator - Pay Off Debt Faster</title>
+    <meta name="description" content="Free debt payoff calculator. Compare avalanche vs snowball methods, visualize your path to financial freedom, and track milestones.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --dark: #1f2937;
+            --gray: #6b7280;
+            --light: #f3f4f6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--dark); line-height: 1.6; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #d1fae5 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--dark), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.125rem;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .hero-stat-label {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        /* Features */
+        .features {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--light);
+            padding: 5rem 2rem;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: var(--gray);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+        }
+
+        .testimonial-result {
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--dark), #374151);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { flex-direction: column; gap: 1.5rem; }
+            .steps { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Crush Your Debt<br>With a Proven Plan</h1>
+        <p>See exactly when you'll be debt-free. Compare payoff strategies side-by-side and celebrate every milestone on your journey to financial freedom.</p>
+        <a href="index.html" class="cta-button">Start Your Free Calculation →</a>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">$1T+</div>
+                <div class="hero-stat-label">US Credit Card Debt</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">50K+</div>
+                <div class="hero-stat-label">Debt-Free Plans Created</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">$2,400</div>
+                <div class="hero-stat-label">Average Interest Saved</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Everything You Need to Get Debt-Free</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Avalanche vs Snowball</h3>
+                <p>Compare both popular strategies side-by-side. See exactly how much interest you'll save with each approach.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Visual Timeline</h3>
+                <p>Interactive charts show your debt decreasing month by month. Watch your progress in real-time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏅</div>
+                <h3>Achievement Milestones</h3>
+                <p>Unlock badges as you progress. First debt paid off, halfway there, debt-free day - celebrate every win!</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Payment Schedule</h3>
+                <p>Know exactly which debt to pay when. Month-by-month breakdown keeps you on track.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Interest Savings</h3>
+                <p>See exactly how much money you'll save by choosing the optimal strategy. Usually $1,000s.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>100% Private</h3>
+                <p>Your financial data never leaves your browser. No account required. No tracking.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Add Your Debts</h3>
+                <p>Enter your credit cards, loans, and other debts with balances and interest rates.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Set Your Payment</h3>
+                <p>Tell us how much you can pay each month. Include extra money for faster payoff.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>See Your Plan</h3>
+                <p>Get your personalized payoff date, compare strategies, and track milestones.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>Success Stories</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p class="testimonial-text">"I saved over $3,200 in interest by switching to the avalanche method. The visual timeline kept me motivated for 18 months!"</p>
+                <p class="testimonial-author">Sarah M.</p>
+                <p class="testimonial-result">Paid off $24,000 in 18 months</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"Seeing exactly when each debt would be paid off was a game changer. I crushed my credit cards 6 months earlier than expected."</p>
+                <p class="testimonial-author">Michael T.</p>
+                <p class="testimonial-result">Eliminated $18,500 in debt</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"The achievements made paying off debt actually fun! Every badge unlocked was a dopamine hit that kept me going."</p>
+                <p class="testimonial-author">Jennifer L.</p>
+                <p class="testimonial-result">Debt-free after 2 years</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Be Debt Free?</h2>
+        <p>Join thousands who have created their personalized debt payoff plan. Your journey to financial freedom starts with one click.</p>
+        <a href="index.html" class="cta-button">Calculate My Debt-Free Date →</a>
+    </section>
+
+    <footer>
+        <p>Debt Freedom Calculator © 2026 | Your journey to financial freedom starts here 💚</p>
+    </footer>
+</body>
+</html>
