@@ -1,5 +1,12 @@
 # debt-freedom-calculator
 
+Production-grade project scaffold focused on reliability, maintainability, and fast onboarding.
+
+[![CI](https://img.shields.io/github/actions/workflow/status/yksanjo/debt-freedom-calculator/ci.yml?branch=main&label=ci)](https://github.com/yksanjo/debt-freedom-calculator/actions)
+![License](https://img.shields.io/github/license/yksanjo/debt-freedom-calculator)
+![Last Commit](https://img.shields.io/github/last-commit/yksanjo/debt-freedom-calculator)
+![Repo Size](https://img.shields.io/github/repo-size/yksanjo/debt-freedom-calculator)
+
 ## Detailed Description
 
 debt-freedom-calculator is maintained as an industry-grade software project with production-ready engineering practices.  
